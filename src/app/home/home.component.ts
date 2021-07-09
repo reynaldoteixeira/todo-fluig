@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoService } from '../services/todo-service.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private todoService:TodoService) { }
+
+  lista;
 
   ngOnInit(): void {
+  }
+
+  getListaTodoService(){
+    this.todoService.getListaDeTarefas().then( data => {
+      this.lista = data;
+      console.log(this.lista);
+    })
   }
 
 }

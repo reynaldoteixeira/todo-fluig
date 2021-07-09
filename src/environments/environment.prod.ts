@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  urlLista: 'http://localhost:3000/lists'
 };

@@ -14,11 +14,29 @@ export class TodoService {
     return new Promise((resolve, reject) => {
 
       this.http.get(environment.urlLista).subscribe(res => {
+
         try {
           resolve(res);
         } catch (error) {
           reject(error);
         }
+
+      });
+
+    });
+  }
+
+  postListaDeTarefas(novaTarefa) {
+    return new Promise((resolve, reject) => {
+
+      this.http.post(environment.urlLista, {"id":Number, "title": novaTarefa }).subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
       });
 
     });

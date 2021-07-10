@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlLista: 'http://localhost:3000/lists'
+  urlLista: 'http://localhost:3000/lists',
+  urlTarefas: 'http://localhost:3000/tasks'
 };
 
 /*

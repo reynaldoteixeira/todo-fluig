@@ -15,6 +15,8 @@ export class HomeComponent implements OnInit {
     ) { }
 
   lista;
+  novaListaDeTarefa;
+  tarefa;
   novaTarefa;
 
   ngOnInit(): void {
@@ -24,28 +26,59 @@ export class HomeComponent implements OnInit {
     this.todoService.getListaDeTarefas().then( data => {
       this.lista = data;
       console.log(this.lista);
-    })
+    });
   }
   
   popUpAdicionarNovaLista(){
     this.alert.alertaCadastro().then( r =>{
       console.log(r)
       if(r.isConfirmed && r.value) {
-        this.novaTarefa = r.value;
+        this.novaListaDeTarefa = r.value;
         this.adicionarListaTodoService();
       } else {
         this.alert.alertaPreenchaListaTarefas();
       }
       
-    })
+    });
 
   }
 
   adicionarListaTodoService(){
-    this.todoService.postListaDeTarefas(this.novaTarefa).then( () => {
-      console.log("Post com sucesso ");
+    this.todoService.postListaDeTarefas(this.novaListaDeTarefa).then( data => {
+      console.log(data);
+      console.log("Post da lista de tarefas com sucesso ");
     });
     
+  }
+
+  // ==============================================================================
+
+  getTarefasTodoService(){
+    this.todoService.getTarefas().then( data => {
+      this.tarefa = data;
+      console.log(this.tarefa);
+    });
+  }
+
+  adicionarNovaTarefa(){
+    this.todoService.postNovaTarefa().then( data => {
+      console.log(data);
+      console.log("Post adicionar tarefa feito com sucesso ");
+    });
+  }
+
+  editarNovaTarefa(){
+    this.todoService.editarTarefa().then( data => {
+      console.log(data);
+      console.log("Edição da tarefa feito com sucesso ");
+    });
+  }
+
+  excluirNovaTarefa(){
+    this.todoService.excluirTarefa().then( data => {
+      console.log(data);
+      console.log("Exclusão da tarefa feito com sucesso ");
+    });
   }
 
 }

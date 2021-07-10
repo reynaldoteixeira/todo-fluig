@@ -29,7 +29,7 @@ export class TodoService {
   postListaDeTarefas(novaTarefa) {
     return new Promise((resolve, reject) => {
 
-      this.http.post(environment.urlLista, {"id":Number, "title": novaTarefa }).subscribe(res => {
+      this.http.post(environment.urlLista, { "title": novaTarefa }).subscribe(res => {
 
         try {
           resolve(res);
@@ -42,4 +42,65 @@ export class TodoService {
     });
   }
 
+  // ================================================================================
+  getTarefas() {
+    return new Promise((resolve, reject) => {
+
+      this.http.get(environment.urlTarefas).subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
+      });
+
+    });
+  }
+
+  postNovaTarefa() {
+    return new Promise((resolve, reject) => {
+
+      this.http.post(environment.urlTarefas, { "listId": 2, "title": "Teste" }).subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
+      });
+
+    });
+  }
+
+  editarTarefa() {
+    return new Promise((resolve, reject) => {
+      this.http.put(environment.urlTarefas + '/4', { "listId": 2, "title": "Teste 2" }).subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
+      });
+    });
+
+  }
+
+  excluirTarefa(){
+    return new Promise((resolve, reject) => {
+      this.http.delete(environment.urlTarefas + '/4').subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
+      });
+    });
+  }
 }

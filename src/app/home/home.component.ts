@@ -16,20 +16,24 @@ export class HomeComponent implements OnInit {
 
   listas;
   novaListaDeTarefa;
-  tarefa;
+  tarefas;
   novaTarefa;
+  idListaSelecionada = 1;
+  tituloTarefas
 
   ngOnInit(): void {
     this.getListaTodoService();
     this.getTarefasTodoService();
-
+    
   }
 
   getListaTodoService(){
     this.todoService.getListaDeTarefas().then( data => {
       this.listas = data;
       JSON.stringify(this.listas);
+      this.tituloTarefas = this.listas[0].title;
     });
+    
   }
   
   popUpAdicionarNovaLista(){
@@ -59,13 +63,8 @@ export class HomeComponent implements OnInit {
 
   getTarefasTodoService(){
     this.todoService.getTarefas().then( data => {
-      this.tarefa = data;
-      // console.log('Tarefas' + this.tarefa);
-
-      for (let x = 0; x < this.tarefa.length; x++) {
-        const cadaTarefa = this.tarefa[x];
-        console.log(cadaTarefa);
-      }
+      this.tarefas = data;
+      JSON.stringify(this.tarefas);
     });
   }
 
@@ -88,6 +87,19 @@ export class HomeComponent implements OnInit {
       console.log(data);
       console.log("Exclusão da tarefa feito com sucesso ");
     });
+  }
+  // =================================================================================
+  recuperarDadosDaLista(idLista){
+    this.idListaSelecionada = idLista;
+    this.recuperacaoTituloDaListaSelecionada();
+  }
+
+  recuperacaoTituloDaListaSelecionada (){
+    for (let z = 0; z < this.listas.length; z++) {
+      if(this.idListaSelecionada == this.listas[z].id) {
+        this.tituloTarefas = this.listas[z].title;
+      }      
+    }
   }
 
 }

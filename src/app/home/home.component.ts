@@ -14,18 +14,21 @@ export class HomeComponent implements OnInit {
     private alert:SweetAlert2Service 
     ) { }
 
-  lista;
+  listas;
   novaListaDeTarefa;
   tarefa;
   novaTarefa;
 
   ngOnInit(): void {
+    this.getListaTodoService();
+    this.getTarefasTodoService();
+
   }
 
   getListaTodoService(){
     this.todoService.getListaDeTarefas().then( data => {
-      this.lista = data;
-      console.log(this.lista);
+      this.listas = data;
+      JSON.stringify(this.listas);
     });
   }
   
@@ -46,6 +49,7 @@ export class HomeComponent implements OnInit {
   adicionarListaTodoService(){
     this.todoService.postListaDeTarefas(this.novaListaDeTarefa).then( data => {
       console.log(data);
+      this.getListaTodoService();
       console.log("Post da lista de tarefas com sucesso ");
     });
     
@@ -56,7 +60,12 @@ export class HomeComponent implements OnInit {
   getTarefasTodoService(){
     this.todoService.getTarefas().then( data => {
       this.tarefa = data;
-      console.log(this.tarefa);
+      // console.log('Tarefas' + this.tarefa);
+
+      for (let x = 0; x < this.tarefa.length; x++) {
+        const cadaTarefa = this.tarefa[x];
+        console.log(cadaTarefa);
+      }
     });
   }
 

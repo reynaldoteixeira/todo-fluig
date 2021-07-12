@@ -75,9 +75,9 @@ export class TodoService {
     });
   }
 
-  editarTarefa() {
+  editarTarefa(idSelecionado, idTarefa, tarefaEditada) {
     return new Promise((resolve, reject) => {
-      this.http.put(environment.urlTarefas + '/4', { "listId": 2, "title": "Teste 2" }).subscribe(res => {
+      this.http.put(environment.urlTarefas + '/' + idTarefa, {"listId":idSelecionado, "title": tarefaEditada }).subscribe(res => {
 
         try {
           resolve(res);

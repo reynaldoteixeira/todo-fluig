@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   novaListaDeTarefa;
   tarefas;
   novaTarefa;
+  tarefaEditada;
   idListaSelecionada = 1;
   tituloTarefas
 
@@ -78,9 +79,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  editarNovaTarefa(){
-    this.todoService.editarTarefa().then( data => {
+  editarNovaTarefa(idSelecionado, idTarefa, tarefaEditada){
+    this.todoService.editarTarefa(idSelecionado, idTarefa, tarefaEditada).then( data => {
       console.log(data);
+      this.getTarefasTodoService();
       console.log("Edição da tarefa feito com sucesso ");
     });
   }
@@ -98,6 +100,22 @@ export class HomeComponent implements OnInit {
       if(r.isConfirmed && r.value) {
         this.novaTarefa = r.value;
         this.adicionarNovaTarefa(this.idListaSelecionada, this.novaTarefa);
+      } else if(r.isDismissed){
+        return;
+      } else {
+        this.alert.alertaPreenchaCampo();
+      }
+      
+    });
+  }
+
+  popupEditarTarefa(idTarefa){
+    console.log("Id tarefa para ser editada" + idTarefa)
+    this.alert.alertaCadastroNovaTarefa().then( r =>{
+      console.log(r)
+      if(r.isConfirmed && r.value) {
+        this.tarefaEditada = r.value;
+        this.editarNovaTarefa(this.idListaSelecionada, idTarefa, this.tarefaEditada);
       } else if(r.isDismissed){
         return;
       } else {

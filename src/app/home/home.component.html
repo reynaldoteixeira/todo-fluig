@@ -34,7 +34,7 @@
                                 <input class="form-check-input" type="checkbox" value="" aria-label="...">
                                 {{tarefa.title}}
 
-                                <button class="btn btn-warning offset-5" (click)="editarNovaTarefa()">Editar Tarefa</button>
+                                <button class="btn btn-warning offset-5" (click)="popupEditarTarefa(tarefa.id)">Editar Tarefa</button>
                                 <button class="btn btn-danger" (click)="excluirNovaTarefa()">excluir Tarefa</button>
                             </li>
                         </ul>

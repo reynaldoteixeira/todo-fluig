@@ -39,6 +39,17 @@ export class SweetAlert2Service {
     });
   }
 
+  alertaEditarTarefa(){
+    return Swal.fire({
+      title: 'Insira o novo título!',
+      input:'text',
+      showCloseButton:true,
+      showCancelButton:true,
+      cancelButtonText:'Cancelar',
+      confirmButtonText: 'Confirmar',
+    });
+  }
+
 
 
 

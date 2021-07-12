@@ -24,8 +24,36 @@
 }
 
 .add-lista:hover{
-    text-decoration-line: underline;
-    color: #061f1c;
+    // text-decoration-line: underline;
+    // color: #061f1c;
     transition: 1s;
     cursor: pointer !important;
+}
+
+.add-button:hover{
+    border: 1px solid #061f1c;
+    transition: 1s;
+    cursor: pointer !important;
+    border-radius: 5px;
+}
+
+.icone-adicionar {
+    width:10px;
+    cursor: pointer !important;
+}
+
+.icone-editar{
+    width: 20px;
+    cursor: pointer !important;
+    margin-right: 10px;
+}
+.icone-deletar{
+    width: 20px;
+    cursor: pointer !important;
+}
+
+.bottom-titulo {
+    border-top: 1px solid #dee2e6;
+    margin-bottom: 24px;
+    margin-top: 16px;
 }

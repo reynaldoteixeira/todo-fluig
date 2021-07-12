@@ -90,9 +90,9 @@ export class TodoService {
 
   }
 
-  excluirTarefa(){
+  excluirTarefa(idTarefa){
     return new Promise((resolve, reject) => {
-      this.http.delete(environment.urlTarefas + '/4').subscribe(res => {
+      this.http.delete(environment.urlTarefas + '/' + idTarefa).subscribe(res => {
 
         try {
           resolve(res);

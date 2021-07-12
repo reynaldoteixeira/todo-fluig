@@ -39,7 +39,6 @@ export class HomeComponent implements OnInit {
   
   popUpAdicionarNovaLista(){
     this.alert.alertaCadastroNovaListaDeTarefas().then( r =>{
-      console.log(r)
       if(r.isConfirmed && r.value) {
         this.novaListaDeTarefa = r.value;
         this.adicionarListaTodoService();
@@ -55,7 +54,6 @@ export class HomeComponent implements OnInit {
 
   adicionarListaTodoService(){
     this.todoService.postListaDeTarefas(this.novaListaDeTarefa).then( data => {
-      console.log(data);
       this.getListaTodoService();
       console.log("Post da lista de tarefas com sucesso ");
     });
@@ -73,7 +71,6 @@ export class HomeComponent implements OnInit {
 
   adicionarNovaTarefa(idSelecionado, novaTarefa){
     this.todoService.postNovaTarefa(idSelecionado, novaTarefa).then( data => {
-      console.log(data);
       this.getTarefasTodoService()
       console.log("Post adicionar tarefa feito com sucesso ");
     });
@@ -81,22 +78,20 @@ export class HomeComponent implements OnInit {
 
   editarNovaTarefa(idSelecionado, idTarefa, tarefaEditada){
     this.todoService.editarTarefa(idSelecionado, idTarefa, tarefaEditada).then( data => {
-      console.log(data);
       this.getTarefasTodoService();
       console.log("Edição da tarefa feito com sucesso ");
     });
   }
 
-  excluirNovaTarefa(){
-    this.todoService.excluirTarefa().then( data => {
-      console.log(data);
+  excluirNovaTarefa(idTarefa){
+    this.todoService.excluirTarefa(idTarefa).then( data => {
+      this.getTarefasTodoService();
       console.log("Exclusão da tarefa feito com sucesso ");
     });
   }
 
   popupAdicionarNovaTarefa(){
     this.alert.alertaCadastroNovaTarefa().then( r =>{
-      console.log(r)
       if(r.isConfirmed && r.value) {
         this.novaTarefa = r.value;
         this.adicionarNovaTarefa(this.idListaSelecionada, this.novaTarefa);
@@ -110,9 +105,7 @@ export class HomeComponent implements OnInit {
   }
 
   popupEditarTarefa(idTarefa){
-    console.log("Id tarefa para ser editada" + idTarefa)
     this.alert.alertaCadastroNovaTarefa().then( r =>{
-      console.log(r)
       if(r.isConfirmed && r.value) {
         this.tarefaEditada = r.value;
         this.editarNovaTarefa(this.idListaSelecionada, idTarefa, this.tarefaEditada);
@@ -122,6 +115,14 @@ export class HomeComponent implements OnInit {
         this.alert.alertaPreenchaCampo();
       }
       
+    });
+  }
+
+  popupExcluirTarefa(idTarefa){
+    this.alert.alertaExcluirTarefa().then(r => {
+      if(r.isConfirmed){
+        this.excluirNovaTarefa(idTarefa);
+      }
     });
   }
   // =================================================================================

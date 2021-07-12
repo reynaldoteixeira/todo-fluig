@@ -50,7 +50,16 @@ export class SweetAlert2Service {
     });
   }
 
-
+  alertaExcluirTarefa(){
+    return Swal.fire({
+      icon: 'warning',
+      // title: '',
+      text: 'Tem certeza que deseja excluir a tarefa?',
+      showCancelButton:true,
+      cancelButtonText:'Cancelar',
+      confirmButtonText: 'Confirmar',
+    })
+  }
 
 
 }

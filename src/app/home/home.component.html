@@ -1,19 +1,54 @@
-<div class="container">
-    <p>Nova Lista</p>
+<div class="row">
+    <div class="col-2">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width:200px; height: 100%;">
+            <a href="/" class="text-white text-decoration-none">
+                <svg class="bi me-2" width="40" height="32"></svg>
+                <span class="fs-4">Sidebar</span>
+            </a>
+            <div *ngFor="let lista of listas">
+                <ul class="nav nav-pills">
+                    <li class="nav-item text-white">
+                        <div class="col-12">
+                            <button class="btn btn-outline-success align-items-center rounded collapsed mb-2"
+                                (click)="recuperarDadosDaLista(lista.id)">{{lista.title}}</button>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <button type="button" class="btn btn-outline-danger" (click)="popUpAdicionarNovaLista()">Adicionar
+                lista</button>
+        </div>
+    </div>
 
-    <button class="btn btn-primary" (click)="getListaTodoService()">Recuperar lista</button>
-    <button class="btn btn-success" (click)="popUpAdicionarNovaLista()">Adicionar lista</button>
 
-   
+
+
+    <div class="col-10">
+        <div class="row">
+            <div class="col-10">
+                <h5>{{tituloTarefas}}</h5>
+                <div *ngFor="let tarefa of tarefas">
+                    <div *ngIf="tarefa.listId == idListaSelecionada">
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <input class="form-check-input" type="checkbox" value="" aria-label="...">
+                                {{tarefa.title}}
+
+                                <button class="btn btn-warning offset-5" (click)="popupEditarTarefa(tarefa.id)">Editar Tarefa</button>
+                                <button class="btn btn-danger" (click)="popupExcluirTarefa(tarefa.id)">excluir Tarefa</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button class="btn btn-success " (click)="popupAdicionarNovaTarefa()">Adicionar Tarefa</button>
+            </div>
+        </div>
+
+
+        <!-- <button class="btn btn-primary" (click)="getListaTodoService()">Recuperar lista</button> -->
+        <!-- <button class="btn btn-success" (click)="popUpAdicionarNovaLista()">Adicionar lista</button> -->
+        <!-- <button class="btn btn-primary" (click)="getTarefasTodoService()">Ver tarefas</button> -->
+        
+
+    </div>
 </div>
-
-<div class="container">
-    <p>Nova Tarefa</p>
-
-    <button class="btn btn-primary" (click)="getTarefasTodoService()">Ver tarefas</button>
-    <button class="btn btn-success" (click)="adicionarNovaTarefa()">Adicionar Tarefa</button>
-    <button class="btn btn-warning" (click)="editarNovaTarefa()">Editar Tarefa</button>
-    <button class="btn btn-danger" (click)="excluirNovaTarefa()">excluir Tarefa</button>
-   
-</div>
-

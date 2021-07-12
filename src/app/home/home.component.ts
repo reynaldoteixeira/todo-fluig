@@ -14,29 +14,38 @@ export class HomeComponent implements OnInit {
     private alert:SweetAlert2Service 
     ) { }
 
-  lista;
+  listas;
   novaListaDeTarefa;
-  tarefa;
+  tarefas;
   novaTarefa;
+  tarefaEditada;
+  idListaSelecionada = 1;
+  tituloTarefas
 
   ngOnInit(): void {
+    this.getListaTodoService();
+    this.getTarefasTodoService();
+    
   }
 
   getListaTodoService(){
     this.todoService.getListaDeTarefas().then( data => {
-      this.lista = data;
-      console.log(this.lista);
+      this.listas = data;
+      JSON.stringify(this.listas);
+      this.tituloTarefas = this.listas[0].title;
     });
+    
   }
   
   popUpAdicionarNovaLista(){
-    this.alert.alertaCadastro().then( r =>{
-      console.log(r)
+    this.alert.alertaCadastroNovaListaDeTarefas().then( r =>{
       if(r.isConfirmed && r.value) {
         this.novaListaDeTarefa = r.value;
         this.adicionarListaTodoService();
+      } else if(r.isDismissed){
+        return;
       } else {
-        this.alert.alertaPreenchaListaTarefas();
+        this.alert.alertaPreenchaCampo();
       }
       
     });
@@ -45,7 +54,7 @@ export class HomeComponent implements OnInit {
 
   adicionarListaTodoService(){
     this.todoService.postListaDeTarefas(this.novaListaDeTarefa).then( data => {
-      console.log(data);
+      this.getListaTodoService();
       console.log("Post da lista de tarefas com sucesso ");
     });
     
@@ -55,30 +64,81 @@ export class HomeComponent implements OnInit {
 
   getTarefasTodoService(){
     this.todoService.getTarefas().then( data => {
-      this.tarefa = data;
-      console.log(this.tarefa);
+      this.tarefas = data;
+      JSON.stringify(this.tarefas);
     });
   }
 
-  adicionarNovaTarefa(){
-    this.todoService.postNovaTarefa().then( data => {
-      console.log(data);
+  adicionarNovaTarefa(idSelecionado, novaTarefa){
+    this.todoService.postNovaTarefa(idSelecionado, novaTarefa).then( data => {
+      this.getTarefasTodoService()
       console.log("Post adicionar tarefa feito com sucesso ");
     });
   }
 
-  editarNovaTarefa(){
-    this.todoService.editarTarefa().then( data => {
-      console.log(data);
+  editarNovaTarefa(idSelecionado, idTarefa, tarefaEditada){
+    this.todoService.editarTarefa(idSelecionado, idTarefa, tarefaEditada).then( data => {
+      this.getTarefasTodoService();
       console.log("Edição da tarefa feito com sucesso ");
     });
   }
 
-  excluirNovaTarefa(){
-    this.todoService.excluirTarefa().then( data => {
-      console.log(data);
+  excluirNovaTarefa(idTarefa){
+    this.todoService.excluirTarefa(idTarefa).then( data => {
+      this.getTarefasTodoService();
       console.log("Exclusão da tarefa feito com sucesso ");
     });
   }
+
+  popupAdicionarNovaTarefa(){
+    this.alert.alertaCadastroNovaTarefa().then( r =>{
+      if(r.isConfirmed && r.value) {
+        this.novaTarefa = r.value;
+        this.adicionarNovaTarefa(this.idListaSelecionada, this.novaTarefa);
+      } else if(r.isDismissed){
+        return;
+      } else {
+        this.alert.alertaPreenchaCampo();
+      }
+      
+    });
+  }
+
+  popupEditarTarefa(idTarefa){
+    this.alert.alertaCadastroNovaTarefa().then( r =>{
+      if(r.isConfirmed && r.value) {
+        this.tarefaEditada = r.value;
+        this.editarNovaTarefa(this.idListaSelecionada, idTarefa, this.tarefaEditada);
+      } else if(r.isDismissed){
+        return;
+      } else {
+        this.alert.alertaPreenchaCampo();
+      }
+      
+    });
+  }
+
+  popupExcluirTarefa(idTarefa){
+    this.alert.alertaExcluirTarefa().then(r => {
+      if(r.isConfirmed){
+        this.excluirNovaTarefa(idTarefa);
+      }
+    });
+  }
+  // =================================================================================
+  recuperarDadosDaLista(idLista){
+    this.idListaSelecionada = idLista;
+    this.recuperacaoTituloDaListaSelecionada();
+  }
+
+  recuperacaoTituloDaListaSelecionada (){
+    for (let z = 0; z < this.listas.length; z++) {
+      if(this.idListaSelecionada == this.listas[z].id) {
+        this.tituloTarefas = this.listas[z].title;
+      }      
+    }
+  }
+
+ 
 
 }

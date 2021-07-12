@@ -37,13 +37,15 @@ export class HomeComponent implements OnInit {
   }
   
   popUpAdicionarNovaLista(){
-    this.alert.alertaCadastro().then( r =>{
+    this.alert.alertaCadastroNovaListaDeTarefas().then( r =>{
       console.log(r)
       if(r.isConfirmed && r.value) {
         this.novaListaDeTarefa = r.value;
         this.adicionarListaTodoService();
+      } else if(r.isDismissed){
+        return;
       } else {
-        this.alert.alertaPreenchaListaTarefas();
+        this.alert.alertaPreenchaCampo();
       }
       
     });
@@ -68,9 +70,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  adicionarNovaTarefa(){
-    this.todoService.postNovaTarefa().then( data => {
+  adicionarNovaTarefa(idSelecionado, novaTarefa){
+    this.todoService.postNovaTarefa(idSelecionado, novaTarefa).then( data => {
       console.log(data);
+      this.getTarefasTodoService()
       console.log("Post adicionar tarefa feito com sucesso ");
     });
   }
@@ -88,6 +91,21 @@ export class HomeComponent implements OnInit {
       console.log("Exclusão da tarefa feito com sucesso ");
     });
   }
+
+  popupAdicionarNovaTarefa(){
+    this.alert.alertaCadastroNovaTarefa().then( r =>{
+      console.log(r)
+      if(r.isConfirmed && r.value) {
+        this.novaTarefa = r.value;
+        this.adicionarNovaTarefa(this.idListaSelecionada, this.novaTarefa);
+      } else if(r.isDismissed){
+        return;
+      } else {
+        this.alert.alertaPreenchaCampo();
+      }
+      
+    });
+  }
   // =================================================================================
   recuperarDadosDaLista(idLista){
     this.idListaSelecionada = idLista;
@@ -101,5 +119,7 @@ export class HomeComponent implements OnInit {
       }      
     }
   }
+
+ 
 
 }

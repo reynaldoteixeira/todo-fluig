@@ -59,10 +59,10 @@ export class TodoService {
     });
   }
 
-  postNovaTarefa() {
+  postNovaTarefa(idSelecionado, novaTarefa) {
     return new Promise((resolve, reject) => {
 
-      this.http.post(environment.urlTarefas, { "listId": 2, "title": "Teste" }).subscribe(res => {
+      this.http.post(environment.urlTarefas, { "listId": idSelecionado, "title": novaTarefa }).subscribe(res => {
 
         try {
           resolve(res);

@@ -1,29 +1,37 @@
+<header class="navbar navbar-dark bg-dark  p-0 shadow">
+    <div class="col-md-3 col-lg-2 me-0 px-3">
+        <a class="navbar-brand offset-3 p-2">FLUIG</a>
+    </div>
+    
+</header>
 <div class="row">
     <div class="col-2">
-        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width:200px; height: 100%;">
-            <a href="/" class="text-white text-decoration-none">
-                <svg class="bi me-2" width="40" height="32"></svg>
-                <span class="fs-4">Sidebar</span>
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light barra-navegacao">
+            <a href="/" class=" d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom ">
+                <!-- <svg class="bi me-2" width="40" height="32"></svg> -->
+                <span class="font-weight-bold">To-Do Lists</span>
             </a>
             <div *ngFor="let lista of listas">
                 <ul class="nav nav-pills">
                     <li class="nav-item text-white">
-                        <div class="col-12">
-                            <button class="btn btn-outline-success align-items-center rounded collapsed mb-2"
-                                (click)="recuperarDadosDaLista(lista.id)">{{lista.title}}</button>
+                        <div class="col-12 mb-2">
+                            <!-- <button class="btn btn-outline-success align-items-center rounded collapsed mb-2"
+                                (click)="recuperarDadosDaLista(lista.id)">{{lista.title}}</button> -->
+                            <a class="link-dark rounded p-1 link-lista" (click)="recuperarDadosDaLista(lista.id)">{{lista.title}}</a>
                         </div>
                     </li>
                 </ul>
             </div>
-            <button type="button" class="btn btn-outline-danger" (click)="popUpAdicionarNovaLista()">Adicionar
-                lista</button>
+            <!-- <button type="button" class="btn btn-outline-success" (click)="popUpAdicionarNovaLista()">Adicionar
+                lista</button> -->
+                <a class="link-dark rounded p-1 add-lista" (click)="popUpAdicionarNovaLista()">Adicionar lista</a>
         </div>
     </div>
 
 
 
 
-    <div class="col-10">
+    <div class="col-10 mt-3">
         <div class="row">
             <div class="col-10">
                 <h5>{{tituloTarefas}}</h5>

@@ -1,0 +1,31 @@
+.barra-navegacao{
+    width:200px;
+    height: 579px;
+    align-items: center!important
+    
+}
+
+.link-lista{
+    text-decoration: none;
+    
+
+}
+
+.link-lista:hover {
+    background-color: #c6e8e5;
+    color: #000000d9;
+    transition: 0.5s;
+    cursor: pointer !important;
+}
+
+.add-lista {
+    text-decoration: none;
+    color: #89d0c9;
+}
+
+.add-lista:hover{
+    text-decoration-line: underline;
+    color: #061f1c;
+    transition: 1s;
+    cursor: pointer !important;
+}

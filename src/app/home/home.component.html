@@ -14,7 +14,7 @@
                 <ul class="nav nav-pills">
                     <li class="nav-item text-white">
                         <div class="col-12 mb-2">
-                            <a class="link-dark rounded p-1 link-lista"
+                            <a class="link-dark rounded p-1 link-lista" [class.link-listaSelecionada]="lista.id == idListaSelecionada"
                                 (click)="recuperarDadosDaLista(lista.id)">{{lista.title}}</a>
                         </div>
                     </li>

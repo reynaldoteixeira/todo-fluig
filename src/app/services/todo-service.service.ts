@@ -10,6 +10,7 @@ export class TodoService {
 
   constructor(private http: HttpClient) { }
 
+  // ==================Requisições lista de tarefas============================
   getListaDeTarefas() {
     return new Promise((resolve, reject) => {
 
@@ -57,6 +58,8 @@ export class TodoService {
   }
 
   // ================================================================================
+
+  // ====================Requisições tarefas=========================================
   getTarefas() {
     return new Promise((resolve, reject) => {
 
@@ -117,4 +120,6 @@ export class TodoService {
       });
     });
   }
+  // ================================================================================
+
 }

@@ -1,11 +1,14 @@
 <app-header></app-header>
 
 <div class="row m-0">
+    <!-- ======================Barra lateral=============================================================== -->
     <div class="col-lg-2 col-12 p-0">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" [class.barra-navegacao]="!isMobile">
             <a href="/" class=" d-flex align-items-center pb-3 mb-4 link-dark text-decoration-none border-bottom ">
                 <span class="font-weight-bold mx-auto">Listas de tarefas</span>
             </a>
+
+            <!-- Lista de tarefas -->
             <div *ngFor="let lista of listas">
                 <ul class="nav nav-pills justify-content-center">
                     <li class="nav-item text-white">
@@ -17,7 +20,10 @@
                     </li>
                 </ul>
             </div>
+            <!-- Lista de tarefas -->
 
+
+            <!-- Botão adicionar lista de tarefas -->
             <div class="p-0 mx-auto add-button">
                 <a class="p-2 add-lista" (click)="popUpAdicionarNovaLista()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
@@ -29,17 +35,23 @@
                     Adicionar lista
                 </a>
             </div>
+            <!-- Botão adicionar lista de tarefas -->
+
 
         </div>
     </div>
+    <!-- ======================Barra lateral=============================================================== -->
 
 
-
-
+    <!-- =====================Página principal============================================================== -->
     <div class="col-10 mt-3">
         <div class="row">
             <div class="col-lg-10 offset-lg-0 offset-2">
+
+                <!-- Título da lista de tarefas selecionada -->
                 <span class="me-2">{{tituloTarefas}}</span>
+
+                <!-- Icone -->
                 <a (click)="popupExcluirListaDeTarefas()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icone-deletar" viewBox="0 0 30 33">
                         <g id="Icon_feather-trash-2" data-name="Icon feather-trash-2"
@@ -60,14 +72,22 @@
                         </g>
                     </svg>
                 </a>
+                <!-- Icone -->
+
                 <div class="bottom-titulo"></div>
+                <!-- Título da lista de tarefas selecionada -->
+
+
+                <!-- Tarefas adicionadas nas respectivas listas -->
                 <div *ngFor="let tarefa of tarefas">
                     <div *ngIf="tarefa.listId == idListaSelecionada">
+
                         <ul class="list-group list-group-flush">
                             <li class="list-group-item p-0">
                                 <input class="form-check-input" type="checkbox" value="" aria-label="...">
                                 {{tarefa.title}}
 
+                                <!-- Icones -->
                                 <a class="offset-1" (click)="popupEditarTarefa(tarefa.id)">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="icone-editar"
                                         viewBox="0 0 33.182 33.182">
@@ -105,13 +125,18 @@
                                         </g>
                                     </svg>
                                 </a>
+                                <!-- Icones -->
                             </li>
                         </ul>
+
                     </div>
                 </div>
+                <!-- Tarefas adicionadas nas respectivas listas -->
+
             </div>
         </div>
 
+        <!-- Botão para adicionar mais uma tarefa -->
         <div class="row mt-2">
             <div class="col-lg-2 col-12 offset-lg-0 offset-2 add-button mb-3 p-1">
                 <a class=" p-1 add-lista" (click)="popupAdicionarNovaTarefa()">
@@ -125,7 +150,9 @@
                 </a>
             </div>
         </div>
-
+        <!-- Botão para adicionar mais uma tarefa -->
 
     </div>
+    <!-- =====================Página principal============================================================== -->
+
 </div>

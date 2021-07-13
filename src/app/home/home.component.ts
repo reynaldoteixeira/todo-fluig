@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
     
   }
 
+  // Observar tamanho da página
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.windowWidth = window.innerWidth;
@@ -41,6 +42,7 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  // ================Funções lista de tarefas=======================
   getListaTodoService(){
     this.todoService.getListaDeTarefas().then( data => {
       this.listas = data;
@@ -91,6 +93,7 @@ export class HomeComponent implements OnInit {
 
   // ==============================================================================
 
+  // ===========Funções das tarefas================================================
   getTarefasTodoService(){
     this.todoService.getTarefas().then( data => {
       this.tarefas = data;
@@ -155,6 +158,8 @@ export class HomeComponent implements OnInit {
     });
   }
   // =================================================================================
+
+  // Funções para imprimir o título da lista selecionada
   recuperarDadosDaLista(idLista){
     this.idListaSelecionada = idLista;
     this.recuperacaoTituloDaListaSelecionada();
@@ -167,6 +172,7 @@ export class HomeComponent implements OnInit {
       } 
     }
   }
+  // =================================================================================
 
  
 

@@ -4,10 +4,10 @@
     <div class="col-lg-2 col-12 p-0">
         <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" [class.barra-navegacao]="!isMobile">
             <a href="/" class=" d-flex align-items-center pb-3 mb-4 link-dark text-decoration-none border-bottom ">
-                <span class="font-weight-bold">Listas de tarefas</span>
+                <span class="font-weight-bold mx-auto">Listas de tarefas</span>
             </a>
             <div *ngFor="let lista of listas">
-                <ul class="nav nav-pills">
+                <ul class="nav nav-pills justify-content-center">
                     <li class="nav-item text-white">
                         <div class="col-12 mb-2">
                             <a class="link-dark rounded p-1 link-lista" [class.link-listaSelecionada]="lista.id == idListaSelecionada"
@@ -18,7 +18,7 @@
                 </ul>
             </div>
 
-            <div class="add-button p-0">
+            <div class="p-0 mx-auto add-button">
                 <a class="p-2 add-lista" (click)="popUpAdicionarNovaLista()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
                         class="icone-adicionar">

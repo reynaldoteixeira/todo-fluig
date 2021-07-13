@@ -52,12 +52,28 @@ export class HomeComponent implements OnInit {
 
   }
 
+  popupExcluirListaDeTarefas(){
+    this.alert.alertaExcluirListaDeTarefa().then(r => {
+      if(r.isConfirmed){
+        this.excluirListaDeTarefa(this.idListaSelecionada);
+      }
+    });
+  }
+
   adicionarListaTodoService(){
     this.todoService.postListaDeTarefas(this.novaListaDeTarefa).then( data => {
       this.getListaTodoService();
       console.log("Post da lista de tarefas com sucesso ");
     });
     
+  }
+
+  excluirListaDeTarefa(idListaTarefa){
+    this.todoService.excluirListaDeTarefa(idListaTarefa).then( data => {
+      this.getListaTodoService();
+      this.idListaSelecionada = this.idListaSelecionada + 1
+      console.log("Exclusão da lista de tarefa feito com sucesso ");
+    });
   }
 
   // ==============================================================================
@@ -135,7 +151,7 @@ export class HomeComponent implements OnInit {
     for (let z = 0; z < this.listas.length; z++) {
       if(this.idListaSelecionada == this.listas[z].id) {
         this.tituloTarefas = this.listas[z].title;
-      }      
+      } 
     }
   }
 

@@ -10,15 +10,36 @@ O projeto tem como objetivo gerenciar uma lista de tarefas onde é possível:
 - Excluir tarefas das listas criadas;
 
 
-## Como executar?
+
+## Passo 1: Instalando as dependências
 
 É necessário que o Node.js esteja instalado.
 
 Após o projeto estar baixado em sua máquina:
 
-- Navegue pelo prompt até a pasta do projeto "../todo-fluig";
-- Dê o comando `npm install` ou `yarn install`;
-- Após dê o comando `ng serve`;
+- Navegue pelo prompt até a pasta do projeto `../todo-fluig`;
+- Dê o comando `npm install`;
+
+
+
+## Passo 2: Rodando json-server 
+
+O json-server serve para simular uma REST API. 
+
+É importante para o funcionamento correto da aplicação e para executar:
+- Navegue pelo prompt até a pasta `../src/app/db`
+- Nela vamos executar o seguinte comando: ` json-server --watch --delay 500 db.json`
+
+OBS: Não feche o prompt após o comando;
+
+
+
+## Passo 3: Executando a aplicação
+
+Após de rodar o json-server, em outro prompt:
+
+- Navegue pelo prompt até a pasta ` ../todo-fluig`
+- Dê o comando `ng serve`;
 - Vá até o browser e insira o link `http://localhost:4200/`;
 
 

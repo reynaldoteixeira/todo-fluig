@@ -1,4 +1,4 @@
-# TodoFluig
+# Todo Fluig
 
 Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
 
@@ -12,7 +12,7 @@ O projeto tem como objetivo gerenciar uma lista de tarefas onde é possível:
 
 ## Como executar?
 
-Será necessário que o Node.js esteja instalado.
+É necessário que o Node.js esteja instalado.
 
 Após o projeto estar baixado em sua máquina:
 

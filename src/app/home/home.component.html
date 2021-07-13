@@ -1,8 +1,8 @@
 <app-header></app-header>
 
 <div class="row m-0">
-    <div class="col-2 p-0">
-        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light barra-navegacao">
+    <div class="col-lg-2 col-12 p-0">
+        <div class="d-flex flex-column flex-shrink-0 p-3 bg-light" [class.barra-navegacao]="!isMobile">
             <a href="/" class=" d-flex align-items-center pb-3 mb-4 link-dark text-decoration-none border-bottom ">
                 <span class="font-weight-bold">Listas de tarefas</span>
             </a>
@@ -38,7 +38,7 @@
 
     <div class="col-10 mt-3">
         <div class="row">
-            <div class="col-10">
+            <div class="col-lg-10 offset-lg-0 offset-2">
                 <span class="me-2">{{tituloTarefas}}</span>
                 <a (click)="popupExcluirListaDeTarefas()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="icone-deletar" viewBox="0 0 30 33">
@@ -113,7 +113,7 @@
         </div>
 
         <div class="row mt-2">
-            <div class="col-2 add-button p-1">
+            <div class="col-lg-2 col-12 offset-lg-0 offset-2 add-button mb-3 p-1">
                 <a class=" p-1 add-lista" (click)="popupAdicionarNovaTarefa()">
                     <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21"
                         class="icone-adicionar">

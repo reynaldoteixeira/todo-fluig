@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { TodoService } from '../services/todo-service.service';
 import { SweetAlert2Service } from '../services/sweet-alert2.service';
 
@@ -20,12 +20,25 @@ export class HomeComponent implements OnInit {
   novaTarefa;
   tarefaEditada;
   idListaSelecionada = 1;
-  tituloTarefas
+  tituloTarefas;
+
+  isMobile = false;
+  windowWidth;
 
   ngOnInit(): void {
     this.getListaTodoService();
     this.getTarefasTodoService();
     
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.windowWidth = window.innerWidth;
+    if (this.windowWidth <= 768){
+      this.isMobile = true;
+    } else {
+      this.isMobile = false;
+    }
   }
 
   getListaTodoService(){

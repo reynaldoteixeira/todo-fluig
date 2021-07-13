@@ -20,6 +20,17 @@ export class SweetAlert2Service {
     });
   }
 
+  alertaExcluirListaDeTarefa(){
+    return Swal.fire({
+      icon: 'warning',
+      // title: '',
+      text: 'Tem certeza que deseja excluir essa lista de tarefa?',
+      showCancelButton:true,
+      cancelButtonText:'Cancelar',
+      confirmButtonText: 'Confirmar',
+    })
+  }
+
   alertaPreenchaCampo(){
     return Swal.fire({
       icon: 'error',

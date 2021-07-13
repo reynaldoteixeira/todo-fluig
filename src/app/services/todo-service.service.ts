@@ -42,6 +42,20 @@ export class TodoService {
     });
   }
 
+  excluirListaDeTarefa(idListaTarefa){
+    return new Promise((resolve, reject) => {
+      this.http.delete(environment.urlLista + '/' + idListaTarefa).subscribe(res => {
+
+        try {
+          resolve(res);
+        } catch (error) {
+          reject(error);
+        }
+
+      });
+    });
+  }
+
   // ================================================================================
   getTarefas() {
     return new Promise((resolve, reject) => {

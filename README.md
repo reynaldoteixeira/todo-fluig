@@ -1,27 +1,48 @@
-# TodoFluig
+# Todo Fluig
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
+Projeto gerado com [Angular CLI](https://github.com/angular/angular-cli) version 10.1.7.
 
-## Development server
+O projeto tem como objetivo gerenciar uma lista de tarefas onde é possível:
+- Criar uma lista de tarefas;
+- Excluir a lista de tarefas;
+- Criar tarefas dentro das listas criadas;
+- Editar tarefas dentro das listas criadas;
+- Excluir tarefas das listas criadas;
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Passo 1: Instalando as dependências
 
-## Build
+É necessário que o Node.js esteja instalado.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Após o projeto estar baixado em sua máquina:
 
-## Running unit tests
+- Navegue pelo prompt até a pasta do projeto `../todo-fluig`;
+- Dê o comando `npm install`;
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Passo 2: Rodando json-server 
 
-## Further help
+O json-server serve para simular uma REST API. 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+É importante para o funcionamento correto da aplicação e para executar:
+- Navegue pelo prompt até a pasta `../src/app/db`
+- Nela vamos executar o seguinte comando: ` json-server --watch --delay 500 db.json`
+
+OBS: Não feche o prompt após o comando;
+
+
+
+## Passo 3: Executando a aplicação
+
+Após de rodar o json-server, em outro prompt:
+
+- Navegue pelo prompt até a pasta ` ../todo-fluig`
+- Dê o comando `ng serve`;
+- Vá até o browser e insira o link `http://localhost:4200/`;
+
+
+## Para mais ajuda
+
+Para mais ajuda use o comando Angulas CLI `ng help` ou dê uma olhada em [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
